@@ -45,12 +45,12 @@ bool respiracionActiva = false;
 
 // VARIABLES LIENZO BLANCO
 unsigned long tiempoInactividadRandom = 0;
-int minRandom = 5000;   //3 min 180000
-int maxRandom = 10000;  //10 min 900000 5min 300000
+int minRandom = 180000;   //3 min 180000
+int maxRandom = 300000;  //10 min 900000 5min 300000
 
 bool lienzoInicializado = false;
 unsigned long inicioTransicion = 0;
-const unsigned long duracionTransicion = 4000;  // en milisegundos, ajustable
+const unsigned long duracionTransicion = 3000;  // en milisegundos, ajustable
 bool transicionLienzoActiva = false;
 float brilloLienzo = 0.0;
 
@@ -76,7 +76,7 @@ float brilloMin = 180;
 
 CHSV coloresPredefinidos[12] = {
   CHSV(13, 255, brilloMax),   // naranja 0
-  CHSV(171, 255, brilloMax),  // azul 1
+  CHSV(175, 255, brilloMax),  // azul 1
   CHSV(230, 255, brilloMax),  // rosa 2
   CHSV(5, 250, brilloMed),    // naranjarojo 3
   CHSV(5, 160, brilloMax),    // naranja pastel 4
