@@ -60,7 +60,7 @@ bool esperandoAsistentes = false;
 unsigned long proximoAsistente = 0;
 int asistentesPendientes = 0;
 
-const unsigned long intervaloAsistente = 10000;  // 10s
+const unsigned long intervaloAsistente = 30000;  // 30s
 int randomMinAsistentes = 1;
 int randomMaxAsistentes = 6;
 int proximoAsistenteMINMs = 1000;
@@ -76,8 +76,8 @@ float brilloMin = 180;
 
 CHSV coloresPredefinidos[12] = {
   CHSV(13, 255, brilloMax),   // naranja 0
-  CHSV(175, 255, brilloMax),  // azul 1
-  CHSV(230, 255, brilloMax),  // rosa 2
+  CHSV(160, 255, brilloMax),  // azul 1
+  CHSV(224, 255, brilloMax),  // rosa 2
   CHSV(5, 250, brilloMed),    // naranjarojo 3
   CHSV(5, 160, brilloMax),    // naranja pastel 4
   CHSV(144, 255, brilloMed),  // celeste 5
@@ -126,7 +126,7 @@ void loop() {
   indicador[0] = coloresPredefinidos[colorSeleccionadoIndex];
 
   bool botonActual = digitalRead(BOTON_PIN);
-  if (abs(valorPotFiltrado - ultimoValorPot) > 15) {
+  if (abs(valorPotFiltrado - ultimoValorPot) > 40) {
     ultimaActividad = millis();
     tiempoInactividadRandom = random(minRandom, maxRandom);
   }
@@ -175,7 +175,7 @@ void loop() {
       animarLienzoBlanco(); 
     }
   } else {
-    EVERY_N_MILLISECONDS(100) {
+    EVERY_N_MILLISECONDS(60) {
       fill_solid(leds, NUM_LEDS, colorFondo);
       for (int i = 0; i < MAX_VIAJEROS; i++) {
         if (viajeros[i].activo) {
@@ -188,7 +188,7 @@ void loop() {
       }
       for (int i = 0; i < MAX_ASISTENTES; i++) {
         if (asistentes[i].activo) {
-          asistentes[i].pos = fmod(asistentes[i].pos + 0.5, NUM_LEDS);
+          asistentes[i].pos = fmod(asistentes[i].pos + 0.4, NUM_LEDS);
           for (int j = 0; j < SIZE_ASISTENTE; j++) {
             int ledIndex = ((int)asistentes[i].pos + j) % NUM_LEDS;
             leds[ledIndex] = coloresPredefinidos[asistentes[i].colorIndex];
